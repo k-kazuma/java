@@ -1,33 +1,57 @@
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class HelloWorld {
-public static void main(String[] args) {
-    Scanner setUserId = new Scanner(System.in);
-    Scanner setUserPass = new Scanner(System.in);
+    public static void main(String[] args) {
+        HashMap<String, String> map = new HashMap<>();
 
-    try {
-        System.out.println("IDを入力してください:");
-        String userId = setUserId.nextLine();
-        System.out.println("パスワードを入力してください:");
-        String userPass = setUserPass.nextLine();
-        SineIn sineIn = new SineIn(userId, userPass);
-        sineIn.hello();
-    } finally {
-        setUserId.close();
-        setUserPass.close();
+        SineIn signIm = new SineIn(map);
+        signIm.hello();
+    
     }
 }
-}
+
 class SineIn {
     String id;
-    String pass;
+    
+    SineIn(HashMap<String, String> map) {
+        Scanner scanner = new Scanner(System.in);
 
-    SineIn(String id, String pass) {
-        this.id = id;
-        this.pass = pass;
+
+        try {
+            System.out.println("IDを入力してください:");
+            String userId = scanner.nextLine();
+            id = userId;
+            System.out.println("パスワードを入力してください:");
+            String userPass = scanner.nextLine();
+            map.put(userId, userPass);
+        } finally {
+            scanner.close();
+        }
     }
-
     public void hello() {
-        System.out.println( id + "さんこんにちわ登録完了しました");
+        System.out.println(id + "さん登録完了しました");
     }
 }
+// class LogIn {
+//     String id;
+//     String pass;
+    
+//     LigIn(HashMap<String, String> map) {
+//         Scanner scanner = new Scanner(System.in);
+
+
+//         try {
+//             System.out.println("IDを入力してください:");
+//             String userId = scanner.nextLine();
+//             id = userId;
+//             System.out.println("パスワードを入力してください:");
+//             String userPass = scanner.nextLine();
+//         } finally {
+//             scanner.close();
+//         }
+//     }
+//     public void hello() {
+//         System.out.println(id + "さんログイン完了しました");
+//     }
+// }
